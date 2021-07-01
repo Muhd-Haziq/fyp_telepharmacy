@@ -3,7 +3,7 @@ include "dbFunctions.php";
 
 $room_id = $_GET["id"];
 
-$query = "UPDATE conference SET participants = participants - 1 WHERE id = $room_id";
+$query = "UPDATE consultation SET participants = participants - 1 WHERE room_id = $room_id";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 
 if($result)
