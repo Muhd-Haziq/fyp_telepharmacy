@@ -3,7 +3,7 @@ include "dbFunctions.php";
 
 $room_name = $_POST["room_name"];
 
-$query = "INSERT INTO conference (room_name) VALUES ('$room_name')";
+$query = "INSERT INTO consultation (room_name) VALUES ('$room_name')";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 
 if($result)
