@@ -1,9 +1,9 @@
 <?php
 include "dbFunctions.php";
 
-$room_id = $_GET["id"];
+$room_name = $_GET["room_name"];
 
-$query = "UPDATE consultation SET participants = participants - 1 WHERE room_id = $room_id";
+$query = "UPDATE consultation SET participants = participants - 1 WHERE room_name = '$room_name'";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 
 if($result)
