@@ -21,8 +21,24 @@ if ( isset($_POST['patient_id']) ) {
     // Retrieve Order Rows
     $result = mysqli_query($link, $ordersQuery) or die(mysqli_error($link));
 
-    while($row = mysqli_fetch_assoc($result)) {
-      $orders[] = $row;  
+    while($order = mysqli_fetch_assoc($result)) {
+        $orderId = $order["order_id"];
+        $drugs = array();
+        
+        // Get Item Drugs of that Order
+        $itemsQuery = "SELECT D.drug_id, drug_name, drug_price, order_drug_qty, drug_image_filename " . 
+                      "FROM order_drug OD " . 
+                      "INNER JOIN drug D " .
+                      "ON OD.drug_id = D.drug_id " .
+                      "WHERE order_id = $orderId ";
+        $drugsResult = mysqli_query($link, $itemsQuery) or die(mysqli_error($link));
+        while($drug = mysqli_fetch_assoc($drugsResult)) {
+             $drugs[] = $drug;
+        }
+        
+        // Add the Item Drugs as one of the props of Order
+        $order["item_drugs"] = $drugs;
+        $orders[] = $order;  
     }
     
     if (!empty($orders)) {

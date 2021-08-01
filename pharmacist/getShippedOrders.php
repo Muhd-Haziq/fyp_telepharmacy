@@ -7,7 +7,7 @@ $isEmpty = true;
 // SQL Statement to get Order
 $ordersQuery = "SELECT * " . 
                "FROM orders " .
-               "WHERE order_status = 'processing' " .
+               "WHERE order_status = 'Shipped out' " .
                "ORDER BY order_id DESC";
 
 //echo $ordersQuery;
